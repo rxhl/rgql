@@ -3,7 +3,7 @@ const gql = require('graphql-tag');
 const mongoose = require('mongoose');
 
 // utils
-const { MONGODB, PORT } = require('./config');
+const { MONGODB, PORT } = require('../src/config');
 
 const typeDefs = gql`
   type Query {
