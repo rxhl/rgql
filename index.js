@@ -3,18 +3,34 @@ const gql = require('graphql-tag');
 const mongoose = require('mongoose');
 
 // utils
-const { MONGODB, PORT } = require('../src/config');
+const { MONGODB, PORT } = require('./src/config');
+
+// models
+const Post = require('./src/models/Post');
 
 const typeDefs = gql`
+  type Post {
+    id: ID!
+    body: String!
+    createdAt: String!
+    username: String!
+  }
   type Query {
-    sayHi: String!
+    getPosts: [Post]
   }
 `;
 
 // Every query/subscription must have a resolver
 const resolvers = {
   Query: {
-    sayHi: () => 'Hello world'
+    getPosts: async () => {
+      try {
+        const posts = await Post.find();
+        return posts;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   }
 };
 
