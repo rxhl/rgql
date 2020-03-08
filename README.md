@@ -1,4 +1,4 @@
-## RGQL
+# RGQL
 
 RGQL is a social media platform with features including:
 
@@ -8,11 +8,11 @@ RGQL is a social media platform with features including:
 - Comment on posts
 - Deployed on Heroku/Netlify
 
-### Quick start
+## Quick start
 
 Link coming soon.
 
-### Architecture
+## Architecture
 
 | Stack      | Tools                             |
 | ---------- | --------------------------------- |

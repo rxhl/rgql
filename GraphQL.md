@@ -1,4 +1,4 @@
-## GraphQL Basics
+# GraphQL Basics
 
 Some thoughts about my understanding with GraphQL.
 
@@ -23,6 +23,6 @@ type User {
 }
 ```
 
-### Resources
+## Resources
 
-[HowToGraphQL](https://www.howtographql.com/basics/0-introduction/)
+- [HowToGraphQL](https://www.howtographql.com/basics/0-introduction/)
