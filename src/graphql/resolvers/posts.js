@@ -24,11 +24,11 @@ module.exports = {
       }
     }
   },
+
   Mutation: {
-    async createPost(_, { body }, context) {
+    createPost: async (_, { body }, context) => {
       // Check if user is valid
       const user = verifyToken(context);
-
       // Create a new post for that user
       const newPost = new Post({
         body,
@@ -37,13 +37,15 @@ module.exports = {
         createdAt: new Date().toISOString()
       });
       const post = await newPost.save();
+
+      context.pubsub.publish('NEW_POST', {
+        newPost: post
+      });
       return post;
     },
-
-    async deletePost(_, { postId }, context) {
+    deletePost: async (_, { postId }, context) => {
       // Check if user is valid
       const user = verifyToken(context);
-
       // Check if the user is the original author
       try {
         const post = await Post.findById(postId);
@@ -54,6 +56,12 @@ module.exports = {
       } catch (err) {
         throw new Error(err);
       }
+    }
+  },
+
+  Subscription: {
+    newPost: {
+      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator('NEW_POST')
     }
   }
 };

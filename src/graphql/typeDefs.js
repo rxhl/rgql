@@ -55,4 +55,8 @@ module.exports = gql`
     username: String!
     createdAt: String!
   }
+
+  type Subscription {
+    newPost: Post!
+  }
 `;
