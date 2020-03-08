@@ -18,4 +18,5 @@ Link coming soon.
 | ---------- | --------------------------------- |
 | Frontend   | React, Apollo client, Semantic UI |
 | Backend    | Node, GraphQL, Apollo server      |
+| Backend    | MongoDB (Atlas)                   |
 | Deployment | Netlify, Heroku                   |

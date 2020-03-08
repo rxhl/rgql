@@ -6,15 +6,7 @@ import { Link } from 'react-router-dom';
 import { Card, Icon, Label, Image, Button } from 'semantic-ui-react';
 
 const PostCard = props => {
-  const {
-    id,
-    body,
-    createdAt,
-    username,
-    likeCount,
-    commentCount,
-    likes
-  } = props.post;
+  const { id, body, createdAt, username, likeCount, commentCount } = props.post;
 
   const likePost = () => null;
   const commentOnPost = () => null;

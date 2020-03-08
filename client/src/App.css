@@ -9,3 +9,9 @@
   font-size: 2rem;
   margin: 15px 0 0 15px;
 }
+
+.form-container {
+  width: 500px;
+  display: grid;
+  margin-left: 20px;
+}
