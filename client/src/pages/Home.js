@@ -36,6 +36,7 @@ const Home = () => {
   if (data) {
     posts = data.getPosts;
   }
+
   return (
     <Grid columns={3}>
       <Grid.Row className="page-title">
