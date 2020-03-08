@@ -34,8 +34,8 @@ Mutation: {
   }
 }
 
-a. Parent - Result of the previous resolver execution level.
-b. args - Arguments passed by the user.
+a. Parent - Result of the previous resolver execution level
+b. args - Arguments passed by the user
 c. context - Used for accessing request headers
 d. info - ???
 ```
