@@ -2,3 +2,10 @@
   margin: 0;
   padding: 0;
 }
+
+.page-title {
+  display: block !important;
+  text-align: left;
+  font-size: 2rem;
+  margin: 15px 0 0 15px;
+}
