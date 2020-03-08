@@ -29,6 +29,11 @@ module.exports = {
     createPost: async (_, { body }, context) => {
       // Check if user is valid
       const user = verifyToken(context);
+
+      if (AbortSignal.body.trim === '') {
+        throw new Error('Post body must not be empty!');
+      }
+
       // Create a new post for that user
       const newPost = new Post({
         body,
