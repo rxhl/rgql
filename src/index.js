@@ -9,7 +9,8 @@ const resolvers = require('./graphql/resolvers');
 // Set up Apollo server
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: ({ req }) => ({ req })
 });
 
 // Connect to MongoDB Atlas &&
