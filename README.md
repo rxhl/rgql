@@ -24,6 +24,8 @@ RGQL also uses Higher-order Component (HoC) to wrap the `Route` component to cre
 
 ## Development
 
+Make sure you have node.js > 9.x.x installed.
+
 ```
 # 1. Clone the repo
 git clone https://github.com/rxhl/rgql.git && cd rgql
@@ -42,7 +44,6 @@ cd client && npm i
 
 # 6. Start the client
 npm start
-
 ```
 
 ## Resources
