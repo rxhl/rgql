@@ -44,6 +44,7 @@ const PostForm = () => {
       const data = proxy.readQuery({
         query: FETCH_POSTS_QUERY
       });
+      // New data = New post + Old posts
       data.getPosts = [result.data.createPost, ...data.getPosts];
 
       // Persist data
@@ -62,20 +63,30 @@ const PostForm = () => {
     createPost();
   }
   return (
-    <Form onSubmit={onSubmit}>
-      <h2 style={{ color: '#aaa' }}>Create a new post</h2>
-      <Form.Field>
-        <Form.Input
-          placeholder="New post..."
-          name="body"
-          onChange={onChange}
-          value={values.body}
-        />
-        <Button type="submit" color="teal">
-          Submit
-        </Button>
-      </Form.Field>
-    </Form>
+    <>
+      <Form onSubmit={onSubmit}>
+        <h2 style={{ color: '#aaa' }}>Create a new post</h2>
+        <Form.Field>
+          <Form.Input
+            placeholder="New post..."
+            name="body"
+            onChange={onChange}
+            value={values.body}
+            error={error ? true : false}
+          />
+          <Button type="submit" color="teal">
+            Submit
+          </Button>
+        </Form.Field>
+      </Form>
+      {error && (
+        <div className="ui error message" style={{ marginBottom: 20 }}>
+          <ul className="list">
+            <li>{error.graphQLErrors[0].message}</li>
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 
