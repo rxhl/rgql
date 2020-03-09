@@ -2,8 +2,8 @@
 
 RGQL is a social media platform with features including:
 
-- Register and login
-- Add/Edit/Delete posts
+- Register and login (JWT auth)
+- Add/Edit/Delete posts (Context API)
 - Like/Unlike posts
 - Comment on posts
 - Deployed on Heroku/Netlify
@@ -18,5 +18,6 @@ Link coming soon.
 | ---------- | --------------------------------- |
 | Frontend   | React, Apollo client, Semantic UI |
 | Backend    | Node, GraphQL, Apollo server      |
-| Backend    | MongoDB (Atlas)                   |
+| Database   | MongoDB (Atlas)                   |
+| Cache      | Apollo cache                      |
 | Deployment | Netlify, Heroku                   |

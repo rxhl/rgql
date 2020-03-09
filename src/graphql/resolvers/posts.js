@@ -30,7 +30,7 @@ module.exports = {
       // Check if user is valid
       const user = verifyToken(context);
 
-      if (AbortSignal.body.trim === '') {
+      if (body.trim === '') {
         throw new Error('Post body must not be empty!');
       }
 
