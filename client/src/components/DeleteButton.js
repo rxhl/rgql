@@ -12,13 +12,13 @@ const DELETE_POST_MUTATION = gql`
   }
 `;
 
-const DeleteButton = ({ postId, callback }) => {
+const DeleteButton = ({ deletePostCb, postId }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [deletePost] = useMutation(DELETE_POST_MUTATION, {
-    update() {
+    update(proxy) {
       setConfirmOpen(false);
-      // TODO: Remove post from cache WITHOUT refresh
-      if (callback) callback();
+      if (deletePostCb) deletePostCb();
+      else window.location.reload();
     },
     variables: {
       postId

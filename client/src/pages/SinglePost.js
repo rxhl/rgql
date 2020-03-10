@@ -94,7 +94,7 @@ const SinglePost = props => {
                   </Label>
                 </Button>
                 {user && user.username === username && (
-                  <DeleteButton postId={id} callback={deletePostCb} />
+                  <DeleteButton deletePostCb={deletePostCb} postId={id} />
                 )}
               </Card.Content>
             </Card>
