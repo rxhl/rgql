@@ -34,13 +34,13 @@ git clone https://github.com/rxhl/rgql.git && cd rgql
 cp env .env
 
 # 3. Install server libs
-npm i
+npm install
 
 # 4. Start the server
 npm run server
 
 # 5. Install client libs
-cd client && npm i
+cd client && npm install
 
 # 6. Start the client
 npm start

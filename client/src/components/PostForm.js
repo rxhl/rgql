@@ -55,6 +55,8 @@ const PostForm = () => {
 
       // Clean input
       values.body = '';
+      // TODO: Add post to cache WITHOUT refresh
+      window.location.reload();
     }
   });
 
