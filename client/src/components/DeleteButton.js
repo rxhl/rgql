@@ -12,13 +12,30 @@ const DELETE_POST_MUTATION = gql`
   }
 `;
 
-const DeleteButton = ({ deletePostCb, postId }) => {
+const DELETE_COMMENT_MUTATION = gql`
+  mutation deleteComment($postId: ID!, $commentId: ID!) {
+    deleteComment(postId: $postId, commentId: $commentId) {
+      id
+      commentCount
+      comments {
+        id
+        username
+        body
+        createdAt
+      }
+    }
+  }
+`;
+
+const DeleteButton = ({ deletePostCb, commentId, postId }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const [deletePost] = useMutation(DELETE_POST_MUTATION, {
+
+  const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION;
+
+  const [deletePostOrMutation] = useMutation(mutation, {
     update(proxy) {
       setConfirmOpen(false);
       if (deletePostCb) deletePostCb();
-      else window.location.reload();
     },
     variables: {
       postId
@@ -38,7 +55,7 @@ const DeleteButton = ({ deletePostCb, postId }) => {
       <Confirm
         open={confirmOpen}
         onCancel={() => setConfirmOpen(false)}
-        onConfirm={deletePost}
+        onConfirm={deletePostOrMutation}
       ></Confirm>
     </>
   );

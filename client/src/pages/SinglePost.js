@@ -98,6 +98,18 @@ const SinglePost = props => {
                 )}
               </Card.Content>
             </Card>
+            {comments.map(cmt => (
+              <Card fluid key={cmt.id}>
+                <Card.Content>
+                  {user && user.username === cmt.username && (
+                    <DeleteButton postId={id} commentId={cmt.id} />
+                  )}
+                  <Card.Header>{username}</Card.Header>
+                  <Card.Meta>{moment(cmt.createdAt).fromNow()}</Card.Meta>
+                  <Card.Description>{cmt.body}</Card.Description>
+                </Card.Content>
+              </Card>
+            ))}
           </Grid.Column>
         </Grid.Row>
       </Grid>
