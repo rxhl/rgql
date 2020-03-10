@@ -38,7 +38,8 @@ const DeleteButton = ({ deletePostCb, commentId, postId }) => {
       if (deletePostCb) deletePostCb();
     },
     variables: {
-      postId
+      postId,
+      commentId
     }
   });
   return (

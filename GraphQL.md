@@ -25,7 +25,14 @@ type User {
 
 In the above example, the root types are `Query` and `Mutation`, and the root fields are `user`, `users` and `createUser`.
 
-5. Every resolver function recieves four arguments - parent, args, context and info.
+5. A parallel can be drawn between GrahQL and REST verbs as follow.
+
+| GraphQL  | REST                     | SQL                    |
+| -------- | ------------------------ | ---------------------- |
+| Query    | GET                      | SELECT                 |
+| Mutation | POST, PUT, PATCH, DELETE | UPDATE, INSERT, DELETE |
+
+6. Every resolver function recieves four arguments - parent, args, context and info.
 
 ```
 Mutation: {
@@ -40,7 +47,7 @@ c. context - Used for accessing request headers
 d. info - ???
 ```
 
-6. Every GraphQL query is a POST request in the end of the day and can be invoked from any cURL-like client.
+7. Every GraphQL query is a POST request in the end of the day and can be invoked from any cURL-like client.
 
 ```
 POST localhost:5000

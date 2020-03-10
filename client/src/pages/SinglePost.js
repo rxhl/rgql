@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import gql from 'graphql-tag';
 import moment from 'moment';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
 // Semantic UI
-import { Grid, Image, Card, Button, Icon, Label } from 'semantic-ui-react';
+import {
+  Grid,
+  Image,
+  Card,
+  Button,
+  Icon,
+  Label,
+  Form
+} from 'semantic-ui-react';
 
 // utils
 import { AuthContext } from '../context/auth';
@@ -34,12 +42,42 @@ const FETCH_POST_QUERY = gql`
   }
 `;
 
+const SUBMIT_COMMENT_MUTATION = gql`
+  mutation($postId: ID!, $body: String!) {
+    createComment(postId: $postId, body: $body) {
+      id
+      commentCount
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
+    }
+  }
+`;
+
 const SinglePost = props => {
-  const { user } = useContext(AuthContext);
   const postId = props.match.params.postId;
+  const { user } = useContext(AuthContext);
+
+  const commentInputRef = useRef(null);
+  const [comment, setComment] = useState('');
+
   const res = useQuery(FETCH_POST_QUERY, {
     variables: {
       postId
+    }
+  });
+
+  const [submitComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
+    update() {
+      setComment('');
+      commentInputRef.current.blur();
+    },
+    variables: {
+      postId,
+      body: comment
     }
   });
 
@@ -98,6 +136,32 @@ const SinglePost = props => {
                 )}
               </Card.Content>
             </Card>
+            {user && (
+              <Card fluid>
+                <Card.Content>
+                  <p>Add a comment</p>
+                  <Form>
+                    <div className="ui action input fluid">
+                      <input
+                        type="text"
+                        placeholder="comment..."
+                        name="comment"
+                        value={comment}
+                        onChange={e => setComment(e.target.value)}
+                        ref={commentInputRef}
+                      />
+                      <button
+                        className="ui teal button"
+                        disabled={comment.trim() === ''}
+                        onClick={submitComment}
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </Form>
+                </Card.Content>
+              </Card>
+            )}
             {comments.map(cmt => (
               <Card fluid key={cmt.id}>
                 <Card.Content>
