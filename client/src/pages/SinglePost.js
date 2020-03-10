@@ -9,6 +9,7 @@ import { Grid, Image, Card, Button, Icon, Label } from 'semantic-ui-react';
 // utils
 import { AuthContext } from '../context/auth';
 import LikeButton from '../components/LikeButton';
+import DeleteButton from '../components/DeleteButton';
 
 // Mutation
 const FETCH_POST_QUERY = gql`
@@ -36,15 +37,15 @@ const FETCH_POST_QUERY = gql`
 const SinglePost = props => {
   const { user } = useContext(AuthContext);
   const postId = props.match.params.postId;
-  const {
-    data: { getPost }
-  } = useQuery(FETCH_POST_QUERY, {
+  const res = useQuery(FETCH_POST_QUERY, {
     variables: {
       postId
     }
   });
 
+  const deletePostCb = () => props.history.push('/');
   let postMarkup;
+
   try {
     const {
       id,
@@ -55,7 +56,7 @@ const SinglePost = props => {
       likes,
       likeCount,
       commentCount
-    } = getPost;
+    } = res.data.getPost;
     postMarkup = (
       <Grid>
         <Grid.Row>
@@ -86,12 +87,15 @@ const SinglePost = props => {
                   basic
                 >
                   <Button basic color="blue">
-                    <Icon name="comments"></Icon>
-                    <Label basic color="blue" pointing="left">
-                      {commentCount}
-                    </Label>
+                    <Icon name="comments" />
                   </Button>
+                  <Label basic color="blue" pointing="left">
+                    {commentCount}
+                  </Label>
                 </Button>
+                {user && user.username === username && (
+                  <DeleteButton postId={id} callback={deletePostCb} />
+                )}
               </Card.Content>
             </Card>
           </Grid.Column>
